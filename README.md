@@ -1,9 +1,9 @@
 # Final Project Report
 
-* Student Name:
-* Github Username:
-* Semester:
-* Course:
+* Student Name: Ye Li
+* Github Username: geracely
+* Semester: 2023 Fall
+* Course: CS5001
 
 
 
