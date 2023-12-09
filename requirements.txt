@@ -10,3 +10,6 @@
 # pandas
 # flask
 # requests  
+
+pyTelegramBotAPI
+gspread
