@@ -28,18 +28,22 @@ Highlight some key features of this project that you want to show off/talk about
 * [pyTelegramBotAPI library guide](https://github.com/eternnoir/pyTelegramBotAPI/blob/master/README.md#getting-started)
 
 ## Guide
-Keep the code running, and then you can use the bot in telegram. You can talk to the bot privately or use it in a group chat. It will record every text message from the chat and write it into a google spreadsheet. Major use cases:
+Keep the code running, and then you can use the bot in telegram. You can talk to the bot privately or use it in a group chat. It will record every text message from the chat and write it into a google spreadsheet. search `@graceread_bot` in telegram to find the bot. \
 
+Major use cases:\
 1. Use default command to intereact with the bot \
 Available commands: \
-    /start - introduction of the bot
-    /help - View this help message
-    /history - view stored chat history
-2. Send message to the bot privately
-    It will 
+    /start - introduction of the bot \
+    /help - View this help message \
+    /history - view stored chat history \
+2. Send message to the bot privately or in a chat group having the bot (bot must be given admin role in the group) \
+    * The bot will fetch every message sent by users and write the message into a Google spreadsheet
+    * The spreadsheet has five columns: msg_time, user_name, ticker, text, msg_details
+    * You can mention a stock using the format "$ticker" in the message so that the bot will put ticker name in the "ticker" column in the sheet
+    * You can label your message under a specific topic using the format "#topic" in the message and the bot will put a "topic" label for the message under msg_details
+    * The data in the spreadsheet can be further processed to produce stats of users, tickers, and topics
 
-The message data will be stored in the following format:
-
+**Note:**
 The default google sheet is set to be this: https://docs.google.com/spreadsheets/d/12lW7o4B2HAdmv56essp6jRa31WmLnDyjn65bGEnsQgE/edit#gid=0
 If you want to use another google sheet, please check installation instruction about how to set up Google sheet authentication.
 
