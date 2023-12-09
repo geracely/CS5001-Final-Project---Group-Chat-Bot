@@ -51,9 +51,9 @@ If we wanted to run this project locally, what would we need to do?  If we need 
 **1. Clone files**
 Git clone this repository: https://github.com/geracely/CS5001-Final-Project---Group-Chat-Bot \
 The major files are:
-    * keys : contains Google sheet authentication json file. You can replace with your own authentication if you want to use your own Google sheet.
-    * main.py
-    * message_cleaner.py
+* keys : a folder contains Google sheet authentication. Must be used with main.py
+* main.py : the main driver of the program
+* message_cleaner.py : must be used with main.py
 
 **2. Install packages** \
 Run `pip install -r requirements.txt`, or install respectively as below: \
@@ -65,9 +65,15 @@ Install the library fo dealing with Google spreadsheet
 ```python
 pip install gspread 
 ```
-**3. Run** \
-Run the program `python3 main.py`. \
-The function `BOT.infinity_polling()` will keep it running. When it is running, the bot is functioning. Once it stops, the bot won't work.
+**3. Setup the bot in telegram Chat Group**
+Create a chat group in telegram. Invite bot `@graceread_bot` to your chat group. The bot must be given `Admin` role in the group. \
+You can also test the bot by directly send messages to it.
+
+**4. Run bot** \
+Run `python3 main.py`. \
+Then you can:
+* use bot command. Send `/help` to check for available commands.
+* send any messages in the chat. The bot will record it into a Google spreadsheet.
 <br />
 
 
@@ -77,8 +83,6 @@ The function `BOT.infinity_polling()` will keep it running. When it is running, 
 * json
 * re
 * datetime
-<br />
-
 
 ### Use your own Google sheets
 The bot is set to send data in this [sheet](https://docs.google.com/spreadsheets/d/12lW7o4B2HAdmv56essp6jRa31WmLnDyjn65bGEnsQgE/edit#gid=0). If you want to use your own Google sheet, please follow these steps:
@@ -91,8 +95,6 @@ Then open `main.py` and:
 * change the value of the variable `FILE_NAME` to be the file name of your own Google spreadsheet
 * change the value of the variable `SHEET_NAME` to be the sheet name of the sheet of your own Google spreadsheet you intended to write data
 * change the value of the variable `FILE_URL` to be the url of your own Google spreadsheet so that the bot will direct to this file in help message.
-<br />
-
 
 ### Use your own Bot
 You can run the program using you own bot. Go to `@BotFather` in telegram to create a new bot and get your bot token. Then open `main.py` and change the value of the variable `BOT_TOKEN` to be your own token.
