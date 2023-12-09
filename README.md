@@ -48,12 +48,12 @@ If you want to use another google sheet, please check installation instruction a
 ## Installation Instructions 
 If we wanted to run this project locally, what would we need to do?  If we need to get API key's include that information, and also command line startup commands to execute the project. If you have a lot of dependencies, you can also include a requirements.txt file, but make sure to include that we need to run `pip install -r requirements.txt` or something similar.
 
-**1. download**
+**1. Download**
 * `folder` keys : contains Google sheet authentication json file. You can replace with your own authentication if you want to use your own Google sheet.
 * main.py
 * message_cleaner.py
 
-**2. install packages** \
+**2. Install packages** \
 Install the library for interaction with telegram bot
 ```python
 pip install pyTelegramBotAPI
@@ -101,9 +101,99 @@ You can run the program using you own bot. Go to `@BotFather` in telegram to cre
 * [gspread guide](https://docs.gspread.org/en/v5.12.0/index.html)
 <br />
 
-## Code Review ?
+## Code Review
 Go over key aspects of code in this section. Both link to the file, include snippets in this report (make sure to use the [coding blocks](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#code)).  Grading wise, we are looking for that you understand your code and what you did. 
+<br> <br />
 
+The `main.py` is the main driver for the program. It handles all the interactions with telegram bot API and Google spreadsheet API. 
+<br> <br />
+
+The `reply_msg()` is in charge of all the automatic replies to commands that require a reply. And for each command, specific reply message should be given accordingly. Currently, only three commands require a reply. More can be added when necessary in the future. 
+```python
+@BOT.message_handler(commands=[START, HELP, HISTORY],
+                     func=lambda message: message.chat.type in CHAT_TYPES)
+def reply_msg(command) -> None:
+    if command.text.startswith(f'/{START}'):
+        BOT.reply_to(command, START_MSG)
+    elif command.text.startswith(f'/{HELP}'):
+        BOT.reply_to(command, HELP_MSG)
+    elif command.text.startswith(f'/{HISTORY}'):
+        BOT.reply_to(command, HISTORY_MSG)
+```
+<br> <br />
+
+The `write_spreadsheet` is used to write data into Google spreadsheet. The file must be open with credential. The Credential file can be downloaded from Google (see details in Installation). Notice that Google has a limitation of items to be wrote in one call, so the length of the `chat_message` list cannot exit the maximum number.
+```python
+def write_spreadsheet(chat_message: list, file_name: str,
+                      sheet_name: str) -> None:
+    cre = gspread.service_account(filename=CRE_PATH)
+    file = cre.open(file_name)
+    sheet = file.worksheet(sheet_name)
+
+    if len(chat_message) > MAX_COLUMNS:
+        raise ValueError(f"chat_message has more than {MAX_COLUMNS} elements,\
+        which exceeds the maximum allowed.")
+    else:
+        sheet.append_row(chat_message)
+```
+<br> <br />
+
+The `get_chat_message()` function is used to fetch messages from telegram API. Since we will directly write each piece of message to Google sheet once we get data from telegram, we do the data formating process together with the get message process. `message` is a special object defined by the `message` class.
+```python
+@BOT.message_handler(func=lambda message: True,
+                     content_types=CONTENT_TYPES, chat_types=CHAT_TYPES)
+def get_chat_message(message) -> None:
+    #  load main part of the message data
+    msg_time = get_time(message.date)
+    user_name = get_username(message.from_user.first_name,
+                             message.from_user.last_name)
+    ticker = get_keyword(message.text, '$')
+    text = message.text
+
+    #  put extra data into one dict
+    msg_detail = dict(
+        topic=get_keyword(message.text, '#'),
+        user_id=message.from_user.username,
+        chat_id=message.chat.id,
+        chat_type=message.chat.type,
+        chat_name=message.chat.title,
+        reply_to=generate_id(message.chat.id,
+                             message.reply_to_message.message_id)
+        if message.reply_to_message else None,
+        unique_id=generate_id(message.chat.id, message.id)
+    )
+
+    #  put all data into a list to be inserted to the spreadsheet
+    #  Five columns maximum to be written in a single operation
+    chat_message = [
+        msg_time,
+        user_name,
+        ticker,
+        text,
+        json.dumps(msg_detail)
+    ]
+
+    #  send to spreadsheet only when it's from real user and not a command
+    if (message.from_user
+            and message.from_user.is_bot is False
+            and text.startswith('/') is False):
+        write_spreadsheet(chat_message, FILE_NAME, SHEET_MSG)
+```
+<br> <br />
+
+The file `message_cleaner.py` is used to format message data. Four functions `get_time, generate_id, get_username, get_keyword` are designed to process time format, generate an unique id for each message, generate user full name, and to extract keywords from message text. `get_keyword` can find the keyword in a message text by recognizing specific pattern. First, we defined the pattern as special symbol + keyword + whitespace. We can then find the keyword by locate the special symbol first and then extract the first set of non-whitespaced strings after it. We use regular expression to represent the pattern.
+```python
+def get_keyword(message_text: str, symbol: str) -> str:
+    pattern = re.escape(symbol) + r'(\S+)'
+    match = re.search(pattern, message_text)
+    if match:
+        keyword = match.group(1)
+    else:
+        return ''
+
+    return keyword.lower()
+
+```
 
 
 ### Major Challenges
@@ -127,15 +217,17 @@ How did you test your code? What did you do to make sure your code was correct? 
 
 
 ## Missing Features / What's Next
-Focus on what you didn't get to do, and what you would do if you had more time, or things you would implement in the future. 
-**Deployment**
+Focus on what you didn't get to do, and what you would do if you had more time, or things you would implement in the future. \
+**Deployment** \
 To deploy the program on a cloud server so I can really put this bot in use.
-**Support more data types**
+**Support more data types** \
 * Add special support for Chinese characters (the get_keywords() function has some flaws when dealing with Chinese characters)
 * Add support to images (now only support text message)
-**message summaries**
+**Message summaries** \
 * produce stats based on message data collected
 * send summaries to chat group weekly or triggered by bot command
+**Manage groups** \
+Make this bot to do managing tasks for the chat group, such as add new memebers, kick out memebers based on rules, pin important messages, etc.
 
 ## Final Reflection
 Write at least a paragraph about your experience in this course. What did you learn? What do you need to do to learn more? Key takeaways? etc.
