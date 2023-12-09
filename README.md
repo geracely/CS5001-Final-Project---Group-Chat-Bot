@@ -181,6 +181,12 @@ def get_chat_message(message) -> None:
 ```
 <br> <br />
 
+Normally, this program should be deployed to a cloud server so that to keep the bot running. Since we don't do deployment in the project yet, we use the infinity_polling() method to keep it running use our local machine. The process is to continuously poll the Telegram servers for new updates, allowing the bot to react to messages, commands, and other events in real-time.
+```python
+BOT.infinity_polling()
+```
+<br> <br />
+
 The file `message_cleaner.py` is used to format message data. Four functions `get_time, generate_id, get_username, get_keyword` are designed to process time format, generate an unique id for each message, generate user full name, and to extract keywords from message text. `get_keyword` can find the keyword in a message text by recognizing specific pattern. First, we defined the pattern as special symbol + keyword + whitespace. We can then find the keyword by locate the special symbol first and then extract the first set of non-whitespaced strings after it. We use regular expression to represent the pattern.
 ```python
 def get_keyword(message_text: str, symbol: str) -> str:
