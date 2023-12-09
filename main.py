@@ -24,8 +24,6 @@ CONTENT_TYPES = ['text']
 
 # save Google sheet credential to a json file
 CRE_PATH = 'keys/doc-writer-bot-2ecdd25ee805.json'
-# set up the credential
-CRE = gspread.service_account(filename=CRE_PATH)
 MAX_COLUMNS = 5  # Maximum columns allowed to be written in one call
 
 # manually create the sheet in the authorized Google account
@@ -91,7 +89,9 @@ def write_spreadsheet(chat_message: list, file_name: str,
     Returns:
         None
     """
-    file = CRE.open(file_name)
+    # set up the credential
+    cre = gspread.service_account(filename=CRE_PATH)
+    file = cre.open(file_name)
     sheet = file.worksheet(sheet_name)
 
     if len(chat_message) > MAX_COLUMNS:
@@ -158,6 +158,11 @@ def get_chat_message(message) -> None:
             and message.from_user.is_bot is False
             and text.startswith('/') is False):
         write_spreadsheet(chat_message, FILE_NAME, SHEET_MSG)
+        print(f'[message recorded] {user_name}: {message.text}.')
 
 
+print('bot starts running...')
+print('Start send message in the chat group or to the bot privately.')
+print(f'The bot will record your message in file: {FILE_URL}.')
 BOT.infinity_polling()
+print('bot stops running.')
