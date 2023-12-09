@@ -32,7 +32,7 @@ Major use cases:
 Available commands: \
     /start - introduction of the bot \
     /help - View this help message \
-    /history - view stored chat history \
+    /history - view stored chat history 
 2. Send message to the bot privately or in a chat group having the bot (bot must be given admin role in the group) 
     * The bot will fetch every message sent by users and write the message into a Google spreadsheet
     * The spreadsheet has five columns: msg_time, user_name, ticker, text, msg_details
@@ -40,12 +40,12 @@ Available commands: \
     * You can label your message under a specific topic using the format "#topic" in the message and the bot will put a "topic" label for the message under msg_details
     * The data in the spreadsheet can be further processed to produce stats of users, tickers, and topics
 
-**Note:**
+**Note:** \
 The default google sheet is set to be this: https://docs.google.com/spreadsheets/d/12lW7o4B2HAdmv56essp6jRa31WmLnDyjn65bGEnsQgE/edit#gid=0
 If you want to use another google sheet, please check installation instruction about how to set up Google sheet authentication.
 
 
-## Installation Instructions
+## Installation Instructions 
 If we wanted to run this project locally, what would we need to do?  If we need to get API key's include that information, and also command line startup commands to execute the project. If you have a lot of dependencies, you can also include a requirements.txt file, but make sure to include that we need to run `pip install -r requirements.txt` or something similar.
 
 1. download:
@@ -53,7 +53,7 @@ If we wanted to run this project locally, what would we need to do?  If we need 
 * main.py
 * message_cleaner.py
 
-2. install packages:
+2. install packages: \
 Install the library for interaction with telegram bot
 ```python
 pip install pyTelegramBotAPI
@@ -72,12 +72,11 @@ Run `main.py`. The function `BOT.infinity_polling()` will keep it running. When 
 * re
 * datetime
 
-**Use your own Google sheets**
+**Use your own Google sheets** \
 The bot is set to send data in this [sheet](https://docs.google.com/spreadsheets/d/12lW7o4B2HAdmv56essp6jRa31WmLnDyjn65bGEnsQgE/edit#gid=0). If you want to use your own Google sheet, please follow these steps:
 1. Get your own Google authentication file \
 Authentication is a json file you can generate and download from your Google account. The detail steps can be found [here](https://docs.gspread.org/en/v5.12.0/oauth2.html). Once you get your own authentication json file, put it inside the `keys` folder to replace the old one. When you generate the authentication file, you will also be given a client email address. Save this email address to be used later. (The client_email is default to be grace-bot@doc-writer-bot.iam.gserviceaccount.com).
-
-3. Make your Google sheet accessible \
+2. Make your Google sheet accessible \
 Create your own Google speadsheet and share it with your own client_email address. Make sure to give it "editor" role. \
 Then open `main.py` and:
 * change the value of the variable `CRE_PATH` to the file path of your own authentication json file path.
@@ -85,8 +84,7 @@ Then open `main.py` and:
 * change the value of the variable `SHEET_NAME` to be the sheet name of the sheet of your own Google spreadsheet you intended to write data
 * change the value of the variable `FILE_URL` to be the url of your own Google spreadsheet so that the bot will direct to this file in help message.
 
-
-**Use your own Bot**
+**Use your own Bot** \
 You can run the program using you own bot. Go to `@BotFather` in telegram to create a new bot and get your bot token. Then open `main.py` and change the value of the variable `BOT_TOKEN` to be your own token.
 
 
