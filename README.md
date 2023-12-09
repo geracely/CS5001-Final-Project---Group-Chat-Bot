@@ -19,23 +19,41 @@ Therefore, the goal of this project is to make a telegram bot as an helper in th
 
 ## Key Features
 Highlight some key features of this project that you want to show off/talk about/focus on. 
-* Implement a bot inside telegram through interaction with telegram API.
-* Format data using dictionary
-* write data into a google spreadsheet through google doc API
-* Read data from the google spreadsheet
+* get message from telegram chat (both private and group)
+* Extract message text: time, from_user, ticker mentioned in text, full content of the message, and other extra info.
+* write data into a google spreadsheet
 
 ## References Used
 * [telegram bot API guide](https://core.telegram.org/bots/api#available-methods)
 * [pyTelegramBotAPI library guide](https://github.com/eternnoir/pyTelegramBotAPI/blob/master/README.md#getting-started)
 
 ## Guide
-How do we run your project? What should we do to see it in action? - Note this isn't installing, this is actual use of the project.. If it is a website, you can point towards the gui, use screenshots, etc talking about features. 
+Keep the code running, and then you can use the bot in telegram. You can talk to the bot privately or use it in a group chat. It will record every text message from the chat and write it into a google spreadsheet. Major use cases:
+
+1. Use default command to intereact with the bot
+Available commands:
+    /start - introduction of the bot
+    /help - View this help message
+    /history - view stored chat history
+2. Send message to the bot privately
+    It will 
+
+The message data will be stored in the following format:
+
+The default google sheet is set to be this: https://docs.google.com/spreadsheets/d/12lW7o4B2HAdmv56essp6jRa31WmLnDyjn65bGEnsQgE/edit#gid=0
+If you want to use another google sheet, please check installation instruction about how to set up Google sheet authentication.
 
 
 ## Installation Instructions
 If we wanted to run this project locally, what would we need to do?  If we need to get API key's include that information, and also command line startup commands to execute the project. If you have a lot of dependencies, you can also include a requirements.txt file, but make sure to include that we need to run `pip install -r requirements.txt` or something similar.
 
 
+**A list of libaries used:**
+* telebot (Interact with telegram, must install pyTelegramBotAPI first)
+* gspread (Interact with Google spreadsheet, must install gspread first)
+* json
+* re
+* datetime
 
 
 **Setup google sheets API**
