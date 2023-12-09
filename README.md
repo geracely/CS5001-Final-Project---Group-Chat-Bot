@@ -30,8 +30,8 @@ Highlight some key features of this project that you want to show off/talk about
 ## Guide
 Keep the code running, and then you can use the bot in telegram. You can talk to the bot privately or use it in a group chat. It will record every text message from the chat and write it into a google spreadsheet. Major use cases:
 
-1. Use default command to intereact with the bot
-Available commands:
+1. Use default command to intereact with the bot \
+Available commands: \
     /start - introduction of the bot
     /help - View this help message
     /history - view stored chat history
