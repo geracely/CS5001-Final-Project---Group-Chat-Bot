@@ -104,7 +104,8 @@ You can run the program using you own bot. Go to `@BotFather` in telegram to cre
 ## Code Review ?
 Go over key aspects of code in this section. Both link to the file, include snippets in this report (make sure to use the [coding blocks](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#code)).  Grading wise, we are looking for that you understand your code and what you did. 
 
-### Major Challenges
+
+## Major Challenges
 1. link to telegram bot \
 Though there is pyTelegramBotAPI as a very useful tool to assist interaction with telegram, I still face big chanllenges when trying to access telegram bot and use its data. At first, I set up the bot quickly with private chat, but I just can't make it with group chat. The bot stopped responding once I invited it into a group chat. I searched telegram bot API docs and tried everything it tells me, but it just didn't work. After reading the doc of pyTelegramBotAPI, I found that they have a telegram group for developers to communicate with each other. So I joined the group and asked about my problem. People are very friendly in that group and quickly offered my many advices. Some of them asked me about the type of my chat group. Is it a supergroup? I said no, because I think I just create a normal group not something special. But a person told me that just set the condition as `chat_types in ['group', 'supergroup']`. I tried and the problem immediately fixed! It turns out that telegram forms a supergroup by default.
 
