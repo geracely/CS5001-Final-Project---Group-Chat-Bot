@@ -63,7 +63,8 @@ Install the library fo dealing with Google spreadsheet
 pip install gspread 
 ```
 3. Run \
-Run `main.py`. The function `BOT.infinity_polling()` will keep it running. When it is running, the bot is functioning. Once it stops, the bot won't work. 
+Run `main.py`. The function `BOT.infinity_polling()` will keep it running. When it is running, the bot is functioning. Once it stops, the bot won't work.
+
 
 **A list of libaries used:**
 * telebot (Interact with telegram, must install pyTelegramBotAPI first)
@@ -71,6 +72,7 @@ Run `main.py`. The function `BOT.infinity_polling()` will keep it running. When 
 * json
 * re
 * datetime
+
 
 **Use your own Google sheets** \
 The bot is set to send data in this [sheet](https://docs.google.com/spreadsheets/d/12lW7o4B2HAdmv56essp6jRa31WmLnDyjn65bGEnsQgE/edit#gid=0). If you want to use your own Google sheet, please follow these steps:
@@ -83,6 +85,7 @@ Then open `main.py` and:
 * change the value of the variable `FILE_NAME` to be the file name of your own Google spreadsheet
 * change the value of the variable `SHEET_NAME` to be the sheet name of the sheet of your own Google spreadsheet you intended to write data
 * change the value of the variable `FILE_URL` to be the url of your own Google spreadsheet so that the bot will direct to this file in help message.
+
 
 **Use your own Bot** \
 You can run the program using you own bot. Go to `@BotFather` in telegram to create a new bot and get your bot token. Then open `main.py` and change the value of the variable `BOT_TOKEN` to be your own token.
