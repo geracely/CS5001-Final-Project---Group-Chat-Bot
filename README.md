@@ -32,7 +32,8 @@ Major use cases:
 Available commands: \
     /start - introduction of the bot \
     /help - View this help message \
-    /history - view stored chat history 
+    /history - view stored chat history
+<br />
 2. Send message to the bot privately or in a chat group having the bot (bot must be given admin role in the group) 
     * The bot will fetch every message sent by users and write the message into a Google spreadsheet
     * The spreadsheet has five columns: msg_time, user_name, ticker, text, msg_details
@@ -48,12 +49,15 @@ If you want to use another google sheet, please check installation instruction a
 ## Installation Instructions 
 If we wanted to run this project locally, what would we need to do?  If we need to get API key's include that information, and also command line startup commands to execute the project. If you have a lot of dependencies, you can also include a requirements.txt file, but make sure to include that we need to run `pip install -r requirements.txt` or something similar.
 
-**1. Download**
-* `folder` keys : contains Google sheet authentication json file. You can replace with your own authentication if you want to use your own Google sheet.
-* main.py
-* message_cleaner.py
+**1. Clone files**
+Git clone this repository: https://github.com/geracely/CS5001-Final-Project---Group-Chat-Bot \
+The major files are:
+    * keys : contains Google sheet authentication json file. You can replace with your own authentication if you want to use your own Google sheet.
+    * main.py
+    * message_cleaner.py
 
 **2. Install packages** \
+Run `pip install -r requirements.txt`, or install respectively as below: \
 Install the library for interaction with telegram bot
 ```python
 pip install pyTelegramBotAPI
@@ -63,7 +67,8 @@ Install the library fo dealing with Google spreadsheet
 pip install gspread 
 ```
 **3. Run** \
-Run `main.py`. The function `BOT.infinity_polling()` will keep it running. When it is running, the bot is functioning. Once it stops, the bot won't work.
+Run the program `python3 main.py`. \
+The function `BOT.infinity_polling()` will keep it running. When it is running, the bot is functioning. Once it stops, the bot won't work.
 <br />
 
 
