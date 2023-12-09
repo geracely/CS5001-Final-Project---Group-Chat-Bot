@@ -69,11 +69,11 @@ def reply_msg(command) -> None:
         None
     """
     if command.text.startswith(f'/{START}'):
-        bot.reply_to(command, START_MSG)
+        BOT.reply_to(command, START_MSG)
     elif command.text.startswith(f'/{HELP}'):
-        bot.reply_to(command, HELP_MSG)
+        BOT.reply_to(command, HELP_MSG)
     elif command.text.startswith(f'/{HISTORY}'):
-        bot.reply_to(command, HISTORY_MSG)
+        BOT.reply_to(command, HISTORY_MSG)
 
 
 def write_spreadsheet(chat_message: list, file_name: str,
