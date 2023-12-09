@@ -104,10 +104,8 @@ You can run the program using you own bot. Go to `@BotFather` in telegram to cre
 ## Code Review
 Go over key aspects of code in this section. Both link to the file, include snippets in this report (make sure to use the [coding blocks](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#code)).  Grading wise, we are looking for that you understand your code and what you did. 
 <br> <br />
-
 The `main.py` is the main driver for the program. It handles all the interactions with telegram bot API and Google spreadsheet API. 
 <br> <br />
-
 The `reply_msg()` is in charge of all the automatic replies to commands that require a reply. And for each command, specific reply message should be given accordingly. Currently, only three commands require a reply. More can be added when necessary in the future. 
 ```python
 @BOT.message_handler(commands=[START, HELP, HISTORY],
@@ -120,7 +118,6 @@ def reply_msg(command) -> None:
     elif command.text.startswith(f'/{HISTORY}'):
         BOT.reply_to(command, HISTORY_MSG)
 ```
-<br> <br />
 
 The `write_spreadsheet` is used to write data into Google spreadsheet. The file must be open with credential. The Credential file can be downloaded from Google (see details in Installation). Notice that Google has a limitation of items to be wrote in one call, so the length of the `chat_message` list cannot exit the maximum number.
 ```python
@@ -136,7 +133,6 @@ def write_spreadsheet(chat_message: list, file_name: str,
     else:
         sheet.append_row(chat_message)
 ```
-<br> <br />
 
 The `get_chat_message()` function is used to fetch messages from telegram API. Since we will directly write each piece of message to Google sheet once we get data from telegram, we do the data formating process together with the get message process. `message` is a special object defined by the `message` class.
 ```python
@@ -179,13 +175,11 @@ def get_chat_message(message) -> None:
             and text.startswith('/') is False):
         write_spreadsheet(chat_message, FILE_NAME, SHEET_MSG)
 ```
-<br> <br />
 
 Normally, this program should be deployed to a cloud server so that to keep the bot running. Since we don't do deployment in the project yet, we use the infinity_polling() method to keep it running use our local machine. The process is to continuously poll the Telegram servers for new updates, allowing the bot to react to messages, commands, and other events in real-time.
 ```python
 BOT.infinity_polling()
 ```
-<br> <br />
 
 The file `message_cleaner.py` is used to format message data. Four functions `get_time, generate_id, get_username, get_keyword` are designed to process time format, generate an unique id for each message, generate user full name, and to extract keywords from message text. `get_keyword` can find the keyword in a message text by recognizing specific pattern. First, we defined the pattern as special symbol + keyword + whitespace. We can then find the keyword by locate the special symbol first and then extract the first set of non-whitespaced strings after it. We use regular expression to represent the pattern.
 ```python
