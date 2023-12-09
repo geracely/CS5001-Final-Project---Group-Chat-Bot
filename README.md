@@ -27,13 +27,12 @@ Highlight some key features of this project that you want to show off/talk about
 ## Guide
 Keep the code running, and then you can use the bot in telegram. You can talk to the bot privately or use it in a group chat. It will record every text message from the chat and write it into a google spreadsheet. search `@graceread_bot` in telegram to find the bot. 
 
-Major use cases:
+**Major use cases:**
 1. Use default command to intereact with the bot \
 Available commands: \
     /start - introduction of the bot \
     /help - View this help message \
     /history - view stored chat history
-<br />
 2. Send message to the bot privately or in a chat group having the bot (bot must be given admin role in the group) 
     * The bot will fetch every message sent by users and write the message into a Google spreadsheet
     * The spreadsheet has five columns: msg_time, user_name, ticker, text, msg_details
