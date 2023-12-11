@@ -229,7 +229,7 @@ How did you test your code? What did you do to make sure your code was correct? 
 > _Make it easy for us to know you *ran the project* and *tested the project* before you submitted this report!_
 
 ### Test message_cleaner.py
-A unit test is performed by `test_message_cleaner.py`. Test result can be found in `example_run&test_result\test_result.txt`.
+A unit test is performed by `test_message_cleaner.py`. Test result can be found in the file [test_result](https://github.com/geracely/CS5001-Final-Project---Group-Chat-Bot/blob/main/example_runs%26testing/test_result.txt)
 
 ### Test main.py
 Tested through interaction with telegram while running. 
