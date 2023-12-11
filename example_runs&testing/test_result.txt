@@ -1,0 +1,60 @@
+
+#  run test_message_cleaner.py
+
+/Users/yeli/Documents/coding/CS5001/CS5001_final/venv/bin/python /Applications/PyCharm.app/Contents/plugins/python/helpers/pycharm/_jb_unittest_runner.py --path /Users/yeli/Documents/coding/CS5001/CS5001_final/test.py
+Testing started at 7:35 PM ...
+Launching unittests with arguments python -m unittest /Users/yeli/Documents/coding/CS5001/CS5001_final/test.py in /Users/yeli/Documents/coding/CS5001/CS5001_final
+
+
+Ran 4 tests in 0.002s
+
+OK
+
+Process finished with exit code 0
+
+
+# test write_spreadsheet() with a list having more than 5 items
+
+/Users/yeli/Documents/coding/CS5001/CS5001_final/venv/bin/python /Users/yeli/Documents/coding/CS5001/CS5001_final/main.py
+bot starts running...
+Start send message in the chat group or to the bot privately.
+The bot will record your message in file: https://docs.google.com/spreadsheets/d/12lW7o4B2HAdmv56essp6jRa31WmLnDyjn65bGEnsQgE/edit?usp=sharing.
+2023-12-10 22:25:49,276 (__init__.py:960 MainThread) ERROR - TeleBot: "Infinity polling exception: chat_message has more than 5 elements, which exceeds the maximum allowed."
+2023-12-10 22:25:49,278 (__init__.py:962 MainThread) ERROR - TeleBot: "Exception traceback:
+Traceback (most recent call last):
+  File "/Users/yeli/Documents/coding/CS5001/CS5001_final/venv/lib/python3.11/site-packages/telebot/__init__.py", line 955, in infinity_polling
+    self.polling(non_stop=True, timeout=timeout, long_polling_timeout=long_polling_timeout,
+  File "/Users/yeli/Documents/coding/CS5001/CS5001_final/venv/lib/python3.11/site-packages/telebot/__init__.py", line 1043, in polling
+    self.__threaded_polling(non_stop=non_stop, interval=interval, timeout=timeout, long_polling_timeout=long_polling_timeout,
+  File "/Users/yeli/Documents/coding/CS5001/CS5001_final/venv/lib/python3.11/site-packages/telebot/__init__.py", line 1118, in __threaded_polling
+    raise e
+  File "/Users/yeli/Documents/coding/CS5001/CS5001_final/venv/lib/python3.11/site-packages/telebot/__init__.py", line 1074, in __threaded_polling
+    self.worker_pool.raise_exceptions()
+  File "/Users/yeli/Documents/coding/CS5001/CS5001_final/venv/lib/python3.11/site-packages/telebot/util.py", line 147, in raise_exceptions
+    raise self.exception_info
+  File "/Users/yeli/Documents/coding/CS5001/CS5001_final/venv/lib/python3.11/site-packages/telebot/util.py", line 90, in run
+    task(*args, **kwargs)
+  File "/Users/yeli/Documents/coding/CS5001/CS5001_final/venv/lib/python3.11/site-packages/telebot/__init__.py", line 6801, in _run_middlewares_and_handler
+    result = handler['function'](message)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/yeli/Documents/coding/CS5001/CS5001_final/main.py", line 161, in get_chat_message
+    write_spreadsheet(chat_message, FILE_NAME, SHEET_MSG)
+  File "/Users/yeli/Documents/coding/CS5001/CS5001_final/main.py", line 98, in write_spreadsheet
+    raise ValueError(f"chat_message has more than {MAX_COLUMNS} elements, "
+ValueError: chat_message has more than 5 elements, which exceeds the maximum allowed.
+"
+
+
+# test get_message()
+
+/Users/yeli/Documents/coding/CS5001/CS5001_final/venv/bin/python /Users/yeli/Documents/coding/CS5001/CS5001_final/main.py
+bot starts running...
+Start send message in the chat group or to the bot privately.
+The bot will record your message in file: https://docs.google.com/spreadsheets/d/12lW7o4B2HAdmv56essp6jRa31WmLnDyjn65bGEnsQgE/edit?usp=sharing.
+[message recorded] gerace: this is to test get_message().
+[message recorded] gerace: I need to see my message print out in the console and also found in the Googlesheet..
+2023-12-10 22:34:56,911 (__init__.py:966 MainThread) ERROR - TeleBot: "Infinity polling: polling exited"
+2023-12-10 22:34:56,911 (__init__.py:968 MainThread) ERROR - TeleBot: "Break infinity polling"
+bot stops running.
+
+Process finished with exit code 0
