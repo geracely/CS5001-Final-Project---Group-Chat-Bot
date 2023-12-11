@@ -213,10 +213,17 @@ My original plan is to unfold all the message data into columns and then write t
 I think about this task flow for a long time. At first, I designed a dict to carry all the message data. I thought that I can then convert the dict into lists and then insert those lists as rows into the spreadsheet. But then I found myself in big trouble because it's hard to find a way to arrange the order of these two actions. When and where is the cut point to move the data to spreadsheet? And how can I avoid writing data with repetion? In the end, I decided to solve it in the simplist way to process those messages piece by piece.  Every time, a piece of message is being posted in the chat, the program will fetch the message and format it (a list ready to be a row), and then write it as a row in the spreadsheet imediately. In this way, I don't need the convert dict to list process anymore, and I don't have to worry about how to deal with data batches. But one big disadvantage of this design is that some messages might be missed if new messages emerge very fast. But this may not be a big problem because I can enable slow mode in telegram chat group. 
 
 
-## Example Runs ?
-Explain how you documented running the project, and what we need to look for in your repository (text output from the project, small videos, links to videos on youtube of you running it, etc)
+## Example Runs
+Explain how you documented running the project, and what we need to look for in your repository (text output from the project, small videos, links to videos on youtube of you running it, etc) 
 
-## Testing ?
+The project has two main features. 
+1. To make a telegram bot that can interact with commands sent through telegram. The result is demonstrated in this video [example_runs_command](https://github.com/geracely/CS5001-Final-Project---Group-Chat-Bot/blob/main/example_runs%26testing/example_run_command.mov), where I tested all three commands with the bot (`/start`, `/help`,`/history`).
+2. To let the bot record the message send in telegram chat and then write into a Google spreadsheet. The result is demonstrated in this video [example_runs_command](https://github.com/geracely/CS5001-Final-Project---Group-Chat-Bot/blob/main/example_runs%26testing/example_run_send_message.mov). In the video, I tried to send different messages in the telegram chat group, and you will see the messages are written into a Google spreadsheet line by line in a specific format. I also tested a message with special symbol "$" in it. The expected result is to get the keyword after '$' and to put it in the 'ticker' column of the Google spreadsheet.
+
+This google [spreadsheet](https://docs.google.com/spreadsheets/d/12lW7o4B2HAdmv56essp6jRa31WmLnDyjn65bGEnsQgE/edit?usp=sharing) is a demonstration of all the messages recorded by the bot.
+
+
+## Testing
 How did you test your code? What did you do to make sure your code was correct? If you wrote unit tests, you can link to them here. If you did run tests, make sure you document them as text files, and include them in your submission. 
 
 > _Make it easy for us to know you *ran the project* and *tested the project* before you submitted this report!_
