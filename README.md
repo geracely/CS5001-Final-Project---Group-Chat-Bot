@@ -133,9 +133,9 @@ def write_spreadsheet(chat_message: list, file_name: str,
     file = cre.open(file_name)
     sheet = file.worksheet(sheet_name)
 
-    if len(chat_message) > MAX_COLUMNS:
-        raise ValueError(f"chat_message has more than {MAX_COLUMNS} elements,\
-        which exceeds the maximum allowed.")
+if len(chat_message) > MAX_COLUMNS:
+    raise ValueError(f"chat_message has more than {MAX_COLUMNS} elements, "
+                     f"which exceeds the maximum allowed.")
     else:
         sheet.append_row(chat_message)
 ```
