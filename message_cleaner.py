@@ -33,8 +33,11 @@ def get_time(timestamp: int, time_format: str = TIME_FORMAT) -> str:
     Returns:
         str: the formated time string
     """
-    datetime_object = datetime.datetime.utcfromtimestamp(timestamp)
-    return datetime_object.strftime(time_format)
+    if timestamp == 0 or timestamp is None:
+        return ''
+    else:
+        datetime_object = datetime.datetime.utcfromtimestamp(timestamp)
+        return datetime_object.strftime(time_format)
 
 
 def generate_id(chat_id: int, msg_id: int) -> str:
