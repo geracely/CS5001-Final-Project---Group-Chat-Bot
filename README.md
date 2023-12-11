@@ -87,7 +87,7 @@ Then you can:
 ### Use your own Google sheets
 The bot is set to send data in this [sheet](https://docs.google.com/spreadsheets/d/12lW7o4B2HAdmv56essp6jRa31WmLnDyjn65bGEnsQgE/edit#gid=0). If you want to use your own Google sheet, please follow these steps:
 1. Get your own Google authentication file \
-Authentication is a json file you can generate and download from your Google account. The detail steps can be found [here](https://docs.gspread.org/en/v5.12.0/oauth2.html). Once you get your own authentication json file, put it inside the `keys` folder to replace the old one. When you generate the authentication file, you will also be given a client email address. Save this email address to be used later. (The client_email is default to be grace-bot@doc-writer-bot.iam.gserviceaccount.com).
+Authentication is a json file you can generate and download from your Google account. The detail steps can be found [here](https://docs.gspread.org/en/v5.12.0/oauth2.html). Once you get your own authentication json file, put it inside the `keys` folder to replace the old one. When you generate the authentication file, you will also be given a client email address. Save this email address to be used later. 
 2. Make your Google sheet accessible \
 Create your own Google speadsheet and share it with your own client_email address. Make sure to give it "editor" role. \
 Then open `main.py` and:
