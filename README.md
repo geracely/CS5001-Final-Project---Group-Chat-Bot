@@ -228,6 +228,30 @@ How did you test your code? What did you do to make sure your code was correct? 
 
 > _Make it easy for us to know you *ran the project* and *tested the project* before you submitted this report!_
 
+### Test message_cleaner.py
+A unit test is performed by `test_message_cleaner.py`. Test result can be found in `example_run&test_result\test_result.txt`.
+
+### Test main.py
+Tested through interaction with telegram while running. 
+1. Test reply_message(command) \
+1.1 Try the three commands inside telegram and to see whether we get expected results. The following pics show the result when type commands: `/start`, `/help`, `/history`. The bot replied to each command as expected.
+![test /start](https://github.com/geracely/CS5001-Final-Project---Group-Chat-Bot/blob/main/example_runs%26testing/test_command_start.png)
+![test /help](https://github.com/geracely/CS5001-Final-Project---Group-Chat-Bot/blob/main/example_runs%26testing/test_command_help.png)
+![test /history](https://github.com/geracely/CS5001-Final-Project---Group-Chat-Bot/blob/main/example_runs%26testing/test_command_history.png)
+
+1.2 Test with false commands. When we enter commands other than `/start`, `/help`, `/history`, we expect it to be reply nothing. And, this message should NOT be written into the Google sheet. As shown in the pic below, when type the command `/happy`, the bot reply nothing, and that message is not being recorded in Google sheet.
+![test wrong command](https://github.com/geracely/CS5001-Final-Project---Group-Chat-Bot/blob/main/example_runs%26testing/test_wrong_command.jpg)
+
+2. Test write_spreadsheet(message)
+I add one more item in the message list and run the program again. An ValueError is given in coonsole as expected. Full results can be found in the file [test_result](https://github.com/geracely/CS5001-Final-Project---Group-Chat-Bot/blob/main/example_runs%26testing/test_result.txt)
+```python
+ValueError: chat_message has more than 5 elements, which exceeds the maximum allowed.
+```
+
+3. Test get_message()
+This function is supposed to get message from telegram chat and then write into Google sheet via valling the function write_spreadsheet(message). I test it by sending messages in telegram and then check if those messages are send to Googlesheet. If sent, print out the message in the console. Results in the console can be found in the file [test_result](https://github.com/geracely/CS5001-Final-Project---Group-Chat-Bot/blob/main/example_runs%26testing/test_result.txt). 
+
+
 
 ## Missing Features / What's Next
 Focus on what you didn't get to do, and what you would do if you had more time, or things you would implement in the future. \
